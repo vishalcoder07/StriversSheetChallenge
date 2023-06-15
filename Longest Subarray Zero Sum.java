@@ -9,19 +9,23 @@ public class Solution {
 		HashMap<Integer, Integer> map = new HashMap<>();
 		int maxLen = 0;
 		int curSum = 0;
+		int k = 0;
 		for(int i=0; i<arr.size(); i++){
 			curSum += arr.get(i);
 
-			if(curSum == 0){
+			if(curSum == k){
 				maxLen = i+1;
 			}
 
+			if(arr.get(i) == k && maxLen == 0){
+				maxLen = 1;
+			}
 
-			if(map.containsKey(curSum - 0))
-				maxLen = Math.max(maxLen, i - map.get(curSum - 0));
+			if(map.containsKey(curSum - k))
+				maxLen = Math.max(maxLen, i - map.get(curSum - k));
 
-			else
-				map.put(curSum, i);
+			
+			if(!map.containsKey(curSum)) map.put(curSum, i);
 			
 		}
 
